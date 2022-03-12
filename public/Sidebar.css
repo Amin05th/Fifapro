@@ -1,0 +1,14 @@
+.Sidebar {
+    height: 96px;
+    display: flex;
+    gap: 20px;
+    margin: 32px;
+}
+
+.SidebarOptions {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(37, 41, 88);
+}

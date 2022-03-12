@@ -1,0 +1,30 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url('./pictures/Background.jpg');
+    background-repeat: no-repeat;
+    background-size: auto 120%;
+    user-select: none;
+}
+
+.OpenpacksContainer {
+    height: 100vh;
+}
+
+.ContainerBody{
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.packs {
+    height: 100px;
+    width: 100px;
+    background-color: red;
+}
+
+.CardsOutOfPacks {
+    
+}

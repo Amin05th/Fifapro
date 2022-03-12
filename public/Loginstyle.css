@@ -1,0 +1,33 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url('./pictures/Background.jpg');
+    background-repeat: no-repeat;
+    background-size: auto 120%;
+    user-select: none;
+}
+
+.LoginContainer {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.LoginInput {
+    height: 40px;
+}
+
+.LoginButtonsContainer {
+    display: flex;
+    height: 36px;
+    gap: 4px;
+}
+
+.Loginbuttons {
+    width: 128px;
+    border-radius: 5%;
+}

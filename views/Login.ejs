@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="/Loginstyle.css">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/" method="post" class = 'LoginContainer'>
+        <input name="LoginInput" class = 'LoginInput' placeholder='Time in unique id for Joining...'/>
+        <div class = 'LoginButtonsContainer'>
+          <button type = 'submit'class = 'Loginbuttons' style = 'background-color: green;'>JOIN</button>
+          <button onclick="CreateUser()" class = 'Loginbuttons' style = 'background-color: gray;'>CREATE</button>
+        </div>
+    </form>
+</body>
+<script>
+    const LoginInput = document.getElementsByClassName('LoginInput')[0]
+
+    function CreateUser() {
+        axios.post('/save', {
+            LoginInput: LoginInput.value
+        })
+    }
+</script>
+</html>

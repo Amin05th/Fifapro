@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="/Dashboardstyle.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="DashboardContainer">
+        <div class = 'Content-table'>
+            <div class = 'StartPage'>
+                <div id="stricker" class = 'stricker'>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+            
+                <div class = 'midfield'>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+            
+                <div class = 'defence'>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+            
+                <div class = 'goalkeeper'>
+                  <div></div>
+                </div>
+            </div>
+        </div>
+        <%- include('_sidebar.ejs', {id: locals.id}) %> 
+    </div>
+</body>
+<script>
+  // include('_cards.ejs', {height: '100px', width: '70px', token: locals.AUTHTOKEN})
+</script>
+</html>
+

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Teammanagment.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="TeamManagmentContainer">
+        <div class = "EditableTeam">
+            <div id="stricker" class = 'stricker'>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+          
+              <div class = 'midfield'>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+          
+              <div class = 'defence'>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+          
+              <div class = 'goalkeeper'>
+                <div></div>
+              </div>
+          </div>
+          <div class = 'bench'>
+            <% FifaUser.cards.map(Card => { %>
+              <p> <%-include('_cards.ejs', {height: '100px', width: '70px', token: locals, Card: Card,}) %>  </p>
+            <% }) %>
+          </div>
+          <div class = 'SaveandReturn'>
+            <a href="/<%=id%> ">Return</a>
+            <a href="">Save</a>
+          </div>
+     </div>
+    </div>
+</body>
+</html>

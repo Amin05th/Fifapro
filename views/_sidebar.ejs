@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="/Sidebar.css">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/<%= locals.id %> /packs" class = 'Sidebar'>
+        <div class = 'SidebarOptions' onclick="MatchBeginn()">
+            <input type="image" src="/pictures/Match.svg" alt="Dein Browser unterstütz keine Bildfunktion"/>
+        </div>
+        <div class = 'SidebarOptions' onclick = "TeamManagment()">
+          <input type="image" src="/pictures/Team.svg" alt="Dein Browser unterstütz keine Bildfunktion"/>
+        </div>
+        <div class = 'SidebarOptions' onclick = "OpenPacks()">
+          <input type="image" src="/pictures/Packs.svg" alt="Dein Browser unterstütz keine Bildfunktion"/>
+        </div>
+        <div class = 'SidebarOptions' onclick="OpenChat()">
+          <input type="image" src="/pictures/Chat.svg" alt="Dein Browser unterstütz keine Bildfunktion"/>
+        </div>
+    </form>
+</body>
+<script>
+    function MatchBeginn(){
+
+    }
+
+    function TeamManagment(){
+
+    }
+
+    function OpenPacks(){
+      axios.get('<%= id %>/packs')
+    }
+
+    function OpenChat(){
+
+    }
+</script>
+</html>

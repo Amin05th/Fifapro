@@ -1,0 +1,43 @@
+.CardContainer {
+    background-image: url('https://i.pinimg.com/originals/75/b4/13/75b413bdfbc6341259bb025edca2e3e7.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.CardHeader {
+    display: flex;
+    align-items: end;
+    height: 50%;
+    width: 100%;
+}
+
+.CardHeaderInformation {
+    display: flex;
+    flex-direction: column;
+    width: 33.33%;
+    height: 85%;
+    align-items: center;
+    justify-content:space-evenly;
+}
+
+.CardHeaderImgContainer {
+    display: flex;
+    width: 66.66%;
+    height: 80%;
+}
+
+.CardBody {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.CardStatContainer {
+    display: flex;
+}
+
+.Stats {
+    margin-bottom: 0;
+    margin-top: 10%;
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Cardstyle.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class = "CardContainer" 
+         style = 'height: <%= height %>; width: <%= width %>'
+         onclick="SendDataToDataBase()">
+        <div class = 'CardHeader'>
+            <div class = 'CardHeaderInformation'>
+                <div>
+                    <p style = 'margin: 1%' ><%= locals.Card?.Rating %></p>
+                    <p style = 'margin: 1%' ><%= locals.Card?.Position %></p>
+                </div>
+                <img style = 'height: 15%' src="<%= locals.Card?.NationImg %>"/>
+                <img style ='height: 25%' src="<%= locals.Card?.ClubImg %>"/>
+            </div>
+
+            <div class = 'CardHeaderImgContainer'>
+                <img src="<%= locals.Card?.PlayerImg %>"/>
+            </div>
+        </div>
+
+        <div class = 'CardBody'>
+            <div><%= locals?.Card.PlayerName %></div>
+            <div class = 'CardStatContainer'>
+                <div style = 'flex-direction: column;'>
+                    <p class = 'Stats'><%= locals.Card.Stats[0]?.Pac %> Pac</p>
+                    <p class = 'Stats'><%= locals.Card.Stats[0]?.Sho %> Sho</p>
+                    <p class = 'Stats'><%= locals.Card.Stats[0]?.Pas %> Pas</p>
+                </div>
+                <div style = 'flex-direction: column;'>
+                    <p class = 'Stats'><%= locals.Card.Stats[0]?.Dri %> Dri</p>
+                    <p class = 'Stats'><%= locals.Card.Stats[0]?.Def %> Def</p>
+                    <p class = 'Stats'><%= locals.Card.Stats[0]?.Phy %> Phy</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const CardContainer = document.querySelectorAll('.CardContainer')
+    const PlayerID = Math.floor(Math.random() * 20)
+
+    const config = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "X-AUTH-TOKEN": "<%= token %>"
+    }}
+
+    async function fetchingAllData(){
+        const Request = await axios.get('https://futdb.app/api/players?page=1&limit=30', config)
+        const PlayerData = Request.data
+        return PlayerData
+    }
+
+    async function SendDataToDataBase(){
+        const PlayerData = await fetchingAllData()
+        axios.post('http://localhost:3000/<%= locals.id %>/packs', {
+            Rating: PlayerData.items[PlayerID].rating,
+            Position: PlayerData.items[PlayerID].position,
+            PlayerName: PlayerData.items[PlayerID].common_name,
+            Pac: PlayerData.items[PlayerID].pace,
+            Sho: PlayerData.items[PlayerID].shooting,
+            Pas: PlayerData.items[PlayerID].passing,
+            Dri: PlayerData.items[PlayerID].dribbling,
+            Def: PlayerData.items[PlayerID].defending,
+            Phy: PlayerData.items[PlayerID].physicality,
+        })
+    }
+
+    const ObserveCard = new ResizeObserver((entires) => {
+        console.log(entires)
+    })
+    
+    CardContainer.forEach((Cards) => {
+        ObserveCard.observe(Cards)
+    })
+    
+</script>
+</html>
