@@ -10,8 +10,7 @@
 </head>
 <body>
     <div class = "CardContainer" 
-         style = 'height: <%= height %>; width: <%= width %>'
-         onclick="SendDataToDataBase()">
+         style = 'height: <%= height %>; width: <%= width %>'>
         <div class = 'CardHeader'>
             <div class = 'CardHeaderInformation'>
                 <div>
@@ -45,7 +44,7 @@
     </div>
 </body>
 <script>
-    const CardContainer = document.querySelectorAll('.CardContainer')
+
     const PlayerID = Math.floor(Math.random() * 20)
 
     const config = {
@@ -75,14 +74,6 @@
             Phy: PlayerData.items[PlayerID].physicality,
         })
     }
-
-    const ObserveCard = new ResizeObserver((entires) => {
-        console.log(entires)
-    })
-    
-    CardContainer.forEach((Cards) => {
-        ObserveCard.observe(Cards)
-    })
     
 </script>
 </html>

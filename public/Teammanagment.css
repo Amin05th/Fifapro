@@ -35,10 +35,37 @@ body{
     min-height: 20%;
     overflow-x: auto;
     justify-content: center;
+    font-size: 7px;
 }
 
 .SaveandReturn {
     display: flex;
     justify-content: flex-start;
     width: 80%;
+}
+
+.pictures{
+    width: 50px;
+}
+
+.stricker {
+    display: flex;
+    justify-content:space-evenly;
+}
+
+.midfield {
+    display: flex;
+    justify-content:center;
+    gap: 12px;
+}
+
+.defence {
+    display: flex;
+    justify-content:space-around;
+}
+
+.goalkeeper {
+    display: flex;
+    justify-content:center;
+    align-items: center;
 }

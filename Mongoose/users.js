@@ -1,6 +1,6 @@
-const mongoose = require('mongoose')
+const {Schema, model} = require('mongoose')
 
-const Fifapro = new mongoose.Schema({
+const Fifaplayer = new Schema({
     _id: String,
     cards: [{
         Rating: Number,
@@ -20,4 +20,12 @@ const Fifapro = new mongoose.Schema({
     }]
 })
 
-module.exports = mongoose.model('fifapro', Fifapro)
+const FifaUserTeam = new Schema({
+    _id: String,
+    Goalkeeper: [],
+    Defenders: [],
+    Midfield: [],
+    Striker: [],
+})
+
+module.exports = model('fifapro', Fifaplayer)

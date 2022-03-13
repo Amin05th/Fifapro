@@ -9,36 +9,19 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/<%= locals.id %> /packs" class = 'Sidebar'>
-        <div class = 'SidebarOptions' onclick="MatchBeginn()">
+    <div class = 'Sidebar'>
+        <a href="/" class = 'SidebarOptions'>
             <input type="image" src="/pictures/Match.svg" alt="Dein Browser unterstütz keine Bildfunktion"/>
-        </div>
-        <div class = 'SidebarOptions' onclick = "TeamManagment()">
+        </a>
+        <a href="/<%= locals.id %>/teammanagment " class = 'SidebarOptions'>
           <input type="image" src="/pictures/Team.svg" alt="Dein Browser unterstütz keine Bildfunktion"/>
-        </div>
-        <div class = 'SidebarOptions' onclick = "OpenPacks()">
+        </a>
+        <a href="/<%= locals.id %>/packs" class = 'SidebarOptions'>
           <input type="image" src="/pictures/Packs.svg" alt="Dein Browser unterstütz keine Bildfunktion"/>
-        </div>
-        <div class = 'SidebarOptions' onclick="OpenChat()">
+        </a>
+        <a href="/" class = 'SidebarOptions'>
           <input type="image" src="/pictures/Chat.svg" alt="Dein Browser unterstütz keine Bildfunktion"/>
-        </div>
-    </form>
+        </a>
+    </div>
 </body>
-<script>
-    function MatchBeginn(){
-
-    }
-
-    function TeamManagment(){
-
-    }
-
-    function OpenPacks(){
-      axios.get('<%= id %>/packs')
-    }
-
-    function OpenChat(){
-
-    }
-</script>
 </html>

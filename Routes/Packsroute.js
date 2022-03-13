@@ -12,7 +12,6 @@ Packsroute.get('/:id/packs', async (req, res) => {
 
 Packsroute.post('/:id/packs', async (req, res) => {
     const param = req.params.id
-    console.log(param)
     const Rating = req.body.Rating
     const Position = req.body.Position
     const PlayerName = req.body.PlayerName

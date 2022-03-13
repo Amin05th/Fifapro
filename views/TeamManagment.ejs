@@ -10,39 +10,47 @@
 <body>
     <div class="TeamManagmentContainer">
         <div class = "EditableTeam">
-            <div id="stricker" class = 'stricker'>
-                <div></div>
-                <div></div>
-                <div></div>
+            <div class = 'stricker'>
+                <img class="pictures" src="/pictures/Card.png">
+                <img class="pictures" src="/pictures/Card.png">
+                <img class="pictures" src="/pictures/Card.png">
               </div>
           
               <div class = 'midfield'>
-                <div></div>
-                <div></div>
-                <div></div>
+                <img class="pictures" src="/pictures/Card.png">
+                <img class="pictures" src="/pictures/Card.png">
+                <img class="pictures" src="/pictures/Card.png">
               </div>
           
               <div class = 'defence'>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+                <img class="pictures" src="/pictures/Card.png">
+                <img class="pictures" src="/pictures/Card.png">
+                <img class="pictures" src="/pictures/Card.png">
+                <img class="pictures" src="/pictures/Card.png">
               </div>
           
               <div class = 'goalkeeper'>
-                <div></div>
+                <img class="pictures" src="/pictures/Card.png">
               </div>
           </div>
           <div class = 'bench'>
-            <% FifaUser.cards.map(Card => { %>
-              <p> <%-include('_cards.ejs', {height: '100px', width: '70px', token: locals, Card: Card,}) %>  </p>
+            <% FifaUser.cards.forEach((Card, Index) => { %>
+              <%-include('_cards.ejs', {height: '100px', width: '70px', token: locals, Card: Card, CardArray: FifaUser.cards})%>
             <% }) %>
           </div>
           <div class = 'SaveandReturn'>
-            <a href="/<%=id%> ">Return</a>
+            <a href="/<%=id%>">Return</a>
             <a href="">Save</a>
           </div>
      </div>
     </div>
 </body>
+<script>
+  const EmptyCards = document.querySelectorAll('.pictures')
+  EmptyCards.forEach((items) => {
+    items.addEventListener('click', () => {
+      console.log(items)
+    })
+  })
+</script>
 </html>
