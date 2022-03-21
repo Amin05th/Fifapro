@@ -11,12 +11,73 @@
 <body>
     <div class="OpenpacksContainer">
         <div class = "ContainerBody">
-            <div id = "CardsOutOfPacks" class = 'CardsOutOfPacks'> 
-                <%- include("_cards.ejs", {height: "320px", width: "200px", token: locals.AUTHTOKEN, Card: {Stats: []}, id: locals.param }) %> 
+            <div id = "CardsOutOfPacks" class = 'CardsOutOfPacks'>
+                <%- include("_cards.ejs", {height: "320px", width: "200px",Card: {Stats: []}}) %> 
             </div>
-            <div onclick="OpenPack()" class = "packs"></div>
+            <img src="/pictures/Fifapack.png" onclick="ConnectToDataBase();Packanimation()" class="card"/>
         </div>
         <%- include('_sidebar.ejs', {id: locals.id}) %>
     </div>
 </body>
+<script>
+        const config = {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "X-AUTH-TOKEN": "<%= locals.AUTHTOKEN %>"
+        }}
+
+        async function fetchingAllData(){
+            const Request = await axios.get('https://futdb.app/api/players?page=1&limit=30', config)
+            const PlayerData = Request.data
+            return PlayerData
+        }
+
+        async function ConnectToDataBase(){
+            const PlayerID = await Math.floor(Math.random() * 20)
+            const PlayerData = await fetchingAllData()
+            await axios.post('http://localhost:3000/<%=locals.param%>/packs', {
+                Rating: PlayerData.items[PlayerID].rating,
+                Position: PlayerData.items[PlayerID].position,
+                PlayerName: PlayerData.items[PlayerID].common_name,
+                Pac: PlayerData.items[PlayerID].pace,
+                Sho: PlayerData.items[PlayerID].shooting,
+                Pas: PlayerData.items[PlayerID].passing,
+                Dri: PlayerData.items[PlayerID].dribbling,
+                Def: PlayerData.items[PlayerID].defending,
+                Phy: PlayerData.items[PlayerID].physicality,
+            }).then(res => {
+                const CardsOutOfPacks = document.querySelector('.CardContainer')
+                const Raiting = CardsOutOfPacks.querySelector('.Raiting')
+                const Position = CardsOutOfPacks.querySelector('.Position')
+                const PlayerName = CardsOutOfPacks.querySelector('.PlayerName')
+                const Pac = CardsOutOfPacks.querySelector('.Pac')
+                const Sho = CardsOutOfPacks.querySelector('.Sho')
+                const Pas = CardsOutOfPacks.querySelector('.Pas')
+                const Dri = CardsOutOfPacks.querySelector('.Dri')
+                const Def = CardsOutOfPacks.querySelector('.Def')
+                const Phy = CardsOutOfPacks.querySelector('.Phy')
+                Raiting.innerText = res.data.Rating 
+                Position.innerText = res.data.Position
+                PlayerName.innerText = res.data.PlayerName
+                Pac.innerText = res.data.Pac + ' Pac '
+                Sho.innerText = res.data.Sho + ' Sho '
+                Pas.innerText = res.data.Pas + ' Pas '
+                Dri.innerText = res.data.Dri + ' Dri '
+                Def.innerText = res.data.Def + ' Def '
+                Phy.innerText = res.data.Phy + ' Phy '
+            })
+        }
+
+        function Packanimation() {
+            const Card = document.querySelector('.card')
+            const CardsOutOfPacks = document.querySelector('.CardsOutOfPacks')
+            Card.classList.add('cardanimtaion')
+            setTimeout(() => {
+                CardsOutOfPacks.style.display = 'block'
+                Card.style.display = 'none'
+            }, 1500)
+            CardsOutOfPacks.addEventListener('click', () => location.reload())}
+
+</script>
 </html>

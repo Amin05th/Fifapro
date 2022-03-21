@@ -1,6 +1,5 @@
 require('dotenv').config()
 const mongoose = require('mongoose')
-const fifapro = require('./Mongoose/users')
 const express = require('express')
 const Loginroute = require('./Routes/Loginroute')
 const Saveroute = require('./Routes/Saveroute')

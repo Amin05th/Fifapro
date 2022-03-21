@@ -4,53 +4,75 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="/Teammanagment.css">
     <title>Document</title>
 </head>
 <body>
     <div class="TeamManagmentContainer">
         <div class = "EditableTeam">
-            <div class = 'stricker'>
+            <div class = 'stricker cardrow'>
                 <img class="pictures" src="/pictures/Card.png">
                 <img class="pictures" src="/pictures/Card.png">
                 <img class="pictures" src="/pictures/Card.png">
               </div>
           
-              <div class = 'midfield'>
+              <div class = 'midfield cardrow'>
                 <img class="pictures" src="/pictures/Card.png">
                 <img class="pictures" src="/pictures/Card.png">
                 <img class="pictures" src="/pictures/Card.png">
               </div>
           
-              <div class = 'defence'>
+              <div class = 'defence cardrow'>
                 <img class="pictures" src="/pictures/Card.png">
                 <img class="pictures" src="/pictures/Card.png">
                 <img class="pictures" src="/pictures/Card.png">
                 <img class="pictures" src="/pictures/Card.png">
               </div>
           
-              <div class = 'goalkeeper'>
+              <div class = 'goalkeeper cardrow'>
                 <img class="pictures" src="/pictures/Card.png">
               </div>
           </div>
           <div class = 'bench'>
             <% FifaUser.cards.forEach((Card, Index) => { %>
-              <%-include('_cards.ejs', {height: '100px', width: '70px', token: locals, Card: Card, CardArray: FifaUser.cards})%>
+              <%-include('_cards.ejs', {height: '100px', width: '70px', Card: Card, CardArray: FifaUser.cards})%>
             <% }) %>
           </div>
           <div class = 'SaveandReturn'>
             <a href="/<%=id%>">Return</a>
-            <a href="">Save</a>
+            <a href="" onclick="SaveTeaminDatabase()">Save</a>
           </div>
      </div>
     </div>
 </body>
 <script>
+  const bench = document.querySelector('.bench')
+  const PulledPlayers = bench.querySelectorAll('div.CardContainer')
   const EmptyCards = document.querySelectorAll('.pictures')
+  let ChangedCard
+
+  PulledPlayers.forEach((PulledPlayer) => {
+      PulledPlayer.addEventListener('click',() => {
+        ChangedCard = PulledPlayer
+      })
+  })
+
   EmptyCards.forEach((items) => {
     items.addEventListener('click', () => {
-      console.log(items)
+      if (ChangedCard == undefined) return
+      items.replaceWith(ChangedCard)
+      setInterval(() => console.log(EmptyCards), 10000)
     })
   })
+
+  function SaveTeaminDatabase(){
+    event.preventDefault()
+    const Striker = document.querySelector('.stricker').children[1]
+    axios.post('/<%= locals.id %>/data/database', {
+      
+    })
+  }
+
 </script>
 </html>

@@ -19,12 +19,15 @@ body{
     align-items: center;
 }
 
-.packs {
-    height: 100px;
-    width: 100px;
-    background-color: red;
+.CardsOutOfPacks {
+    display: none;
 }
 
-.CardsOutOfPacks {
-    
+.card {
+    transform: translate(0%,0%);
+    transition: ease-in-out 2s;
+}
+
+.cardanimtaion{
+    transform: translate(0%,110%);
 }
