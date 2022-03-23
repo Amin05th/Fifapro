@@ -39,7 +39,7 @@ Packsroute.route('/:id/packs')
 .get(async(req, res) => {
     const param = req.params.id
     res.render('OpenPacks', {
-        param: param,
+        id: param,
         AUTHTOKEN: process.env.AUTHTOKEN,
     })
 })

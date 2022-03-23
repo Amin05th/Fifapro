@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Matchstyle.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class = 'MatchContainer'>
+        <div class="MatchBox">
+            <div class="Teams">
+                <% locals.SavedTeamForMatch.Team.map(Teams => { %>
+                    <%= Teams.Goalkeeper[0].PlayerName %>
+                    <%Teams.Defenders.map(Defender => {%> <p class="Positions"><%= Defender.PlayerName %></p><% }) %> 
+                    <%Teams.Midfield.map(Midfield => {%> <p class="Positions"><%= Midfield.PlayerName %></p> <% }) %> 
+                    <%Teams.Striker.map(Striker => {%> <p class = 'Positions'><%= Striker.PlayerName %></p><% }) %>
+               <% }) %>  
+            </div>
+            <div class="GameInfos">
+                <div class = 'Score'>
+                    <h1>0</h1>
+                    <h1>0</h1>
+                </div>
+                <div class="Time">
+                    <h1>00:00</h1>
+                </div>
+            </div>
+            <div class="Teams">
+
+            </div>
+        </div>
+        <%- include('_sidebar.ejs', {id: locals.id}) %> 
+    </div>
+</body>
+</html>

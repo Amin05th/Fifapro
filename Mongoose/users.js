@@ -17,15 +17,13 @@ const Fifaplayer = new Schema({
             Def: Number,
             Phy: Number,
         }]
+    }],
+    Team: [{
+        Goalkeeper: [],
+        Defenders: [],
+        Midfield: [],
+        Striker: [],
     }]
-})
-
-const FifaUserTeam = new Schema({
-    _id: String,
-    Goalkeeper: [],
-    Defenders: [],
-    Midfield: [],
-    Striker: [],
 })
 
 module.exports = model('fifapro', Fifaplayer)

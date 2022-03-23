@@ -14,7 +14,7 @@
             <div id = "CardsOutOfPacks" class = 'CardsOutOfPacks'>
                 <%- include("_cards.ejs", {height: "320px", width: "200px",Card: {Stats: []}}) %> 
             </div>
-            <img src="/pictures/Fifapack.png" onclick="ConnectToDataBase();Packanimation()" class="card"/>
+            <img id = 'Pack' src="/pictures/Fifapack.png" onclick="Packanimation()" class="card"/>
         </div>
         <%- include('_sidebar.ejs', {id: locals.id}) %>
     </div>
@@ -26,6 +26,7 @@
                 "Content-Type": "application/json",
                 "X-AUTH-TOKEN": "<%= locals.AUTHTOKEN %>"
         }}
+        const Pack = document.getElementById('Pack')
 
         async function fetchingAllData(){
             const Request = await axios.get('https://futdb.app/api/players?page=1&limit=30', config)
@@ -33,10 +34,12 @@
             return PlayerData
         }
 
-        async function ConnectToDataBase(){
+        Pack.addEventListener('click', ConnectToDatabase)
+
+        async function ConnectToDatabase(){
             const PlayerID = await Math.floor(Math.random() * 20)
             const PlayerData = await fetchingAllData()
-            await axios.post('http://localhost:3000/<%=locals.param%>/packs', {
+            await axios.post('http://localhost:3000/<%=locals.id%>/packs', {
                 Rating: PlayerData.items[PlayerID].rating,
                 Position: PlayerData.items[PlayerID].position,
                 PlayerName: PlayerData.items[PlayerID].common_name,
@@ -67,6 +70,7 @@
                 Def.innerText = res.data.Def + ' Def '
                 Phy.innerText = res.data.Phy + ' Phy '
             })
+            Pack.removeEventListener('click',ConnectToDatabase)
         }
 
         function Packanimation() {
@@ -77,7 +81,8 @@
                 CardsOutOfPacks.style.display = 'block'
                 Card.style.display = 'none'
             }, 1500)
-            CardsOutOfPacks.addEventListener('click', () => location.reload())}
+            CardsOutOfPacks.addEventListener('click', () => location.reload())
+        }
 
 </script>
 </html>

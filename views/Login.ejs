@@ -18,7 +18,7 @@
     </form>
 </body>
 <script>
-    const LoginInput = document.getElementsByClassName('LoginInput')[0]
+    const LoginInput = document.querySelector('.LoginInput')
 
     function CreateUser() {
         axios.post('/save', {
