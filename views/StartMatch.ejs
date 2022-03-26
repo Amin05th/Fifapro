@@ -9,29 +9,214 @@
 </head>
 <body>
     <div class = 'MatchContainer'>
-        <div class="MatchBox">
-            <div class="Teams">
-                <% locals.SavedTeamForMatch.Team.map(Teams => { %>
-                    <%= Teams.Goalkeeper[0].PlayerName %>
-                    <%Teams.Defenders.map(Defender => {%> <p class="Positions"><%= Defender.PlayerName %></p><% }) %> 
-                    <%Teams.Midfield.map(Midfield => {%> <p class="Positions"><%= Midfield.PlayerName %></p> <% }) %> 
-                    <%Teams.Striker.map(Striker => {%> <p class = 'Positions'><%= Striker.PlayerName %></p><% }) %>
-               <% }) %>  
-            </div>
-            <div class="GameInfos">
-                <div class = 'Score'>
-                    <h1>0</h1>
-                    <h1>0</h1>
-                </div>
-                <div class="Time">
-                    <h1>00:00</h1>
-                </div>
-            </div>
-            <div class="Teams">
+        <div class = 'Game-box'>
+            <div class = 'Game-board'>
 
+                <div class="Teams">
+                    <% locals.SavedTeamForMatch.Team.map(Teams => { %>
+                        <p> <%= Teams.Goalkeeper[0].PlayerName %> </p>
+                        <%Teams.Defenders.map(Defender => {%> <p><%= Defender.PlayerName %></p><%})%> 
+                        <%Teams.Midfield.map(Midfield => {%> <p><%= Midfield.PlayerName %></p> <%})%> 
+                        <%Teams.Striker.map(Striker => {%> <p ><%= Striker.PlayerName %></p><%})%>
+                   <% }) %>  
+                </div>
+                
+                <div class="GameInfos">
+                    <div class = 'Score'>
+                        <h1>0</h1>
+                        <h1>0</h1>
+                    </div>
+                    <div class="Time">
+                        <h1>00:00</h1>
+                    </div>
+                    <div class = 'SimulateButton' ><button>Simulate</button></div>
+                </div>
+                
+                <div id = 'OpponendTeam' class="Teams">
+                    
+                </div>
             </div>
         </div>
         <%- include('_sidebar.ejs', {id: locals.id}) %> 
     </div>
 </body>
+<script>
+    const OpponendTeam = document.getElementById('OpponendTeam')
+    const Goalkeeper = [
+        {
+            id: 1,
+            name: 'Donnaruma'
+        },
+        {
+            id: 2,
+            name: 'Alisson'
+        },
+        {
+            id:  3,
+            name: 'Mendy'
+        },
+        {
+            id: 4,
+            name: 'Yashin'
+        }
+    ]
+
+    const Leftback = [
+        {
+            id: 1,
+            name: 'Robertson'
+        },
+        {
+            id: 2,
+            name: 'Davies'
+        },
+        {
+            id: 3,
+            name: 'Cancelo'
+        },
+        {
+            id: 4,
+            name: 'Hernandez'
+        }
+    ]
+
+    const Centerback = [
+        {
+            id: 1,
+            name: 'Ruben Dias'
+        },
+        {
+            id: 1,
+            name: 'Marquinhos'
+        },
+        {
+            id: 1,
+            name: 'Van Dijk'
+        },
+        {
+            id: 1,
+            name: 'Bonucci'
+        }
+    ]
+
+    const Rightback = [
+        {
+            id: 1,
+            name: 'Hakimi'
+        },
+        {
+            id: 2,
+            name: 'Alex Arnold'
+        },
+        {
+            id: 3,
+            name: 'Walker'
+        },
+        {
+            id: 4,
+            name: 'James'
+        }
+    ]
+
+    const Center = [
+        {
+            id: 1,
+            name: 'De Bruyne'
+        },
+        {
+            id: 2,
+            name: 'Kante'
+        },
+        {
+            id: 3,
+            name: 'Jorginho'
+        },
+        {
+            id: 4,
+            name: 'Ferndandes'
+        },
+        {
+            id: 5,
+            name: 'Kimmich'
+        },
+        {
+            id: 6,
+            name: 'Goretzka'
+        }
+    ]
+
+    const LeftWinger = [
+        {
+            id: 1,
+            name: 'Ronaldinho'
+        },
+        {
+            id: 2,
+            name: 'Neymar'
+        },
+        {
+            id: 3,
+            name: 'Mane'
+        },
+        {
+            id: 4,
+            name: 'Vinicius'
+        }
+    ]
+
+    const Striker = [
+        {
+            id: 1,
+            name: 'C. Ronaldo'
+        },
+        {
+            id: 2,
+            name: 'Lewandowski'
+        },
+        {
+            id: 3,
+            name: 'Mbappe'
+        },
+        {
+            id: 4,
+            name: 'Pele'
+        }
+    ]
+
+    const RightWinger = [
+        {
+            id: 1,
+            name: 'Messi'
+        },
+        {
+            id: 2,
+            name: 'Salah'
+        },
+        {
+            id: 3,
+            name: 'Sancho'
+        },
+        {
+            id: 4,
+            name: 'Garrincha'
+        }
+    ]
+
+    const Team = [Goalkeeper[Math.floor(Math.random() * 4)].name,
+                  Leftback[Math.floor(Math.random() * 4)].name,
+                  Centerback[Math.floor(Math.random() * 6)].name,
+                  Centerback[Math.floor(Math.random() * 6)].name,
+                  Rightback[Math.floor(Math.random() * 4)].name,
+                  Center[Math.floor(Math.random() * 6)].name,
+                  Center[Math.floor(Math.random() * 6)].name,
+                  Center[Math.floor(Math.random() * 6)].name,
+                  LeftWinger[Math.floor(Math.random() * 4)].name,
+                  Striker[Math.floor(Math.random() * 4)].name,
+                  RightWinger[Math.floor(Math.random() * 4)].name]
+    
+    OpponendTeam.innerHTML = Team.map(team => {return '<p>' + team + '</p>'}).join('')
+    const HAHA = new Date()
+    const SUII = HAHA.setTime(00)
+    console.log(SUII)
+</script>
 </html>

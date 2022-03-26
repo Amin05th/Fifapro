@@ -5,6 +5,7 @@ body{
     background-repeat: no-repeat;
     background-size: auto 120%;
     user-select: none;
+    font-family: Arial;
 }
 
 .TeamManagmentContainer {

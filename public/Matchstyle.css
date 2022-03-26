@@ -5,44 +5,61 @@ body{
     background-repeat: no-repeat;
     background-size: auto 120%;
     user-select: none;
+    font-family: Arial;
 }
 
 .MatchContainer {
     height: 100vh;
-}
-
-.MatchBox {
-    min-height: 70%;
-    width: 80%;
-    display: flex;
-}
-
-.Teams {
-    display: flex;
-    width: 20%;
-    background-color: red;
-    flex-direction: column;
-}
-
-.Positions {
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
-.GameInfos {
-    width: 60%;
-    background-color: blue;
-}
-
-.Score {
-    display: flex;
-    width: 100%;
-    justify-content:space-around
-}
-
-.Time {
-    min-height: 100%;
+.Game-box {
+    flex-grow: 1;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.Game-board {
+    display: flex;
+    width: 80%;
+    min-height: 90%;
+}
+
+.Teams {
+    background-color: rgb(53,197,3);
+    opacity: 0.50;
+    width: 20%;
+}
+
+.GameInfos {
+    background-image: url('https://media.istockphoto.com/photos/soccer-field-fussballfeld-picture-id157613485?k=20&m=157613485&s=170667a&w=0&h=uFl49dBmtCSJ0WjSAm-N6L3VYbJSIoCHjpSnYTJ8Z4g=');
+    background-repeat: no-repeat;
+    background-size:cover;
+    flex-grow: 1;
+}
+
+.Score{
+    display: flex;
+    justify-content: space-around;
+}
+
+.Time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height:70%;
+}
+
+.SimulateButton{
+    display: flex;
+    justify-content: center;
+}
+
+.SimulateButton > button{
+    padding: 1.5%;
+    width: 40%;
+    background-color: rgb(55,200,3);
 }

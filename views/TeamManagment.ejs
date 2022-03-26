@@ -48,43 +48,50 @@
 </body>
 <script>
   const bench = document.querySelector('.bench')
-  const PulledPlayers = bench.querySelectorAll('div.CardContainer')
+  const PulledPlayers = bench.querySelectorAll('.bench div.CardContainer')
+  console.log(PulledPlayers)
   const EmptyCards = document.querySelectorAll('.pictures')
+  const cardrow = document.querySelectorAll('.cardrow')
+  const TryMe = []
   let ChangedCard
+  let Index
 
-  PulledPlayers.forEach((PulledPlayer) => {
-      PulledPlayer.addEventListener('click',() => {
-        ChangedCard = PulledPlayer
-      })
+  PulledPlayers.forEach((PulledPlayer, index) => {
+    PulledPlayer.addEventListener('click', PickUpPulledPlayer)
+    function PickUpPulledPlayer(){
+      ChangedCard = PulledPlayer
+      Index = index
+    }
   })
 
-  EmptyCards.forEach((items) => {
-    items.addEventListener('click', () => {
+  EmptyCards.forEach((items, index) => {
+    items.addEventListener('click', changePlayerPosition)
+    function changePlayerPosition(){
       if (ChangedCard == undefined) return
       items.replaceWith(ChangedCard)
-    })
+    }
   })
 
   function SaveTeaminDatabase(){
-      const cardrow = document.querySelectorAll('.cardrow')
-      const Goalkeeper = {PlayerName: cardrow.item(3).children.item(0).querySelector('.PlayerName').textContent}
-      const LeftBack = {PlayerName: cardrow.item(2).children.item(0).querySelector('.PlayerName').textContent}
-      const CenterBack1 = {PlayerName: cardrow.item(2).children.item(1).querySelector('.PlayerName').textContent}
-      const CenterBack2 = {PlayerName: cardrow.item(2).children.item(2).querySelector('.PlayerName').textContent}
-      const RightBack = {PlayerName: cardrow.item(2).children.item(0).querySelector('.PlayerName').textContent}
-      const center1 = {PlayerName: cardrow.item(1).children.item(0).querySelector('.PlayerName').textContent}
-      const center2 = {PlayerName: cardrow.item(1).children.item(1).querySelector('.PlayerName').textContent}
-      const center3 = {PlayerName: cardrow.item(1).children.item(2).querySelector('.PlayerName').textContent}
-      const LeftWinger = {PlayerName: cardrow.item(0).children.item(0).querySelector('.PlayerName').textContent}
-      const Striker = {PlayerName: cardrow.item(0).children.item(1).querySelector('.PlayerName').textContent}
-      const RightWinger = {PlayerName: cardrow.item(0).children.item(2).querySelector('.PlayerName').textContent}
-      
-      axios.post('/<%= locals.id %>/savedteam', {
-          Goalkeeper: Goalkeeper,
-          Defender: [LeftBack, CenterBack1, CenterBack2, RightBack],
-          Center: [center1, center2, center3],
-          Forward: [LeftWinger, Striker, RightWinger]
-      })
-    }
+    const Goalkeeper = {PlayerName: cardrow.item(3).children.item(0).querySelector('.PlayerName').textContent}
+    const LeftBack = {PlayerName: cardrow.item(2).children.item(0).querySelector('.PlayerName').textContent}
+    const CenterBack1 = {PlayerName: cardrow.item(2).children.item(1).querySelector('.PlayerName').textContent}
+    const CenterBack2 = {PlayerName: cardrow.item(2).children.item(2).querySelector('.PlayerName').textContent}
+    const RightBack = {PlayerName: cardrow.item(2).children.item(0).querySelector('.PlayerName').textContent}
+    const center1 = {PlayerName: cardrow.item(1).children.item(0).querySelector('.PlayerName').textContent}
+    const center2 = {PlayerName: cardrow.item(1).children.item(1).querySelector('.PlayerName').textContent}
+    const center3 = {PlayerName: cardrow.item(1).children.item(2).querySelector('.PlayerName').textContent}
+    const LeftWinger = {PlayerName: cardrow.item(0).children.item(0).querySelector('.PlayerName').textContent}
+    const Striker = {PlayerName: cardrow.item(0).children.item(1).querySelector('.PlayerName').textContent}
+    const RightWinger = {PlayerName: cardrow.item(0).children.item(2).querySelector('.PlayerName').textContent}
+    
+    axios.post('/<%= locals.id %>/savedteam', {
+        Goalkeeper: Goalkeeper,
+        Defender: [LeftBack, CenterBack1, CenterBack2, RightBack],
+        Center: [center1, center2, center3],
+        Forward: [LeftWinger, Striker, RightWinger]
+    })
+  }
+
 </script>
 </html>
