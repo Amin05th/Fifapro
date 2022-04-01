@@ -53,6 +53,10 @@ body{
     min-height:70%;
 }
 
+.Time > span {
+    display: flex;
+}
+
 .SimulateButton{
     display: flex;
     justify-content: center;

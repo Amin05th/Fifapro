@@ -32,3 +32,19 @@ body{
 .cardanimtaion{
     transform: translate(0%,110%);
 }
+
+.Packprice{
+    background-color: rgb(37,41,88);
+    min-width: max-content;
+    display: flex;
+    align-items: center;
+    justify-content:flex-end;
+    padding-left: 5%;
+    padding-right: 5%;
+    height: 5vh;
+}
+
+.Packprice > img {
+    height: 5vh;
+    width: 8vh;
+}

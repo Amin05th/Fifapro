@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="/Teammanagment.css">
+    <link rel="stylesheet" href="/style.css">
     <title>Document</title>
 </head>
 <body>
@@ -48,29 +49,26 @@
 </body>
 <script>
   const bench = document.querySelector('.bench')
-  const PulledPlayers = bench.querySelectorAll('.bench div.CardContainer')
-  console.log(PulledPlayers)
+  let PulledPlayers = bench.querySelectorAll('.CardContainer')
   const EmptyCards = document.querySelectorAll('.pictures')
   const cardrow = document.querySelectorAll('.cardrow')
-  const TryMe = []
-  let ChangedCard
-  let Index
 
-  PulledPlayers.forEach((PulledPlayer, index) => {
-    PulledPlayer.addEventListener('click', PickUpPulledPlayer)
-    function PickUpPulledPlayer(){
-      ChangedCard = PulledPlayer
-      Index = index
+  PulledPlayers.forEach((PulledPlayer, index, myArray) => {
+    PulledPlayer.addEventListener('click', PickPulledPlayer)
+     function PickPulledPlayer() {
+      EmptyCards.forEach((EmptyCard, Index) => {
+        EmptyCard.addEventListener('click', SelectEmptyCard)
+         function SelectEmptyCard(){
+          EmptyCard.replaceWith(PulledPlayer)
+          PulledPlayers = bench.querySelectorAll('.CardContainer')
+          const clonedNode = myArray.item(index).cloneNode(true)
+          PulledPlayer.replaceWith(clonedNode)
+        }
+        setTimeout(() => EmptyCard.removeEventListener('click', SelectEmptyCard),650)
+      })
     }
   })
 
-  EmptyCards.forEach((items, index) => {
-    items.addEventListener('click', changePlayerPosition)
-    function changePlayerPosition(){
-      if (ChangedCard == undefined) return
-      items.replaceWith(ChangedCard)
-    }
-  })
 
   function SaveTeaminDatabase(){
     const Goalkeeper = {PlayerName: cardrow.item(3).children.item(0).querySelector('.PlayerName').textContent}

@@ -1,0 +1,16 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url('./pictures/Background.jpg');
+    background-repeat: no-repeat;
+    background-size: auto 120%;
+    user-select: none;
+    font-family: Arial;
+    overflow: hidden;
+}
+
+.CoinContainer {
+    position: absolute;
+    right: 0%;
+    top: 0%;
+}

@@ -8,9 +8,11 @@ Dashboardroute.post('/save', async (req, res) => {
     await fifapro.create({_id: value, cards: []})
 })
 
-Dashboardroute.get('/:id', (req, res) => {
+Dashboardroute.get('/:id', async (req, res) => {
     const params = req.params.id
-    res.render('Dashboard', {id:params})
+    const FifaUser = await fifapro.findById(params)
+    const Coins =  FifaUser?.Coins
+    res.render('Dashboard', {id:params, Coins:Coins})
 })
 
 module.exports = Dashboardroute

@@ -6,15 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="/Openpacks.css">
+    <link rel="stylesheet" href="/style.css">
     <title>Document</title>
 </head>
 <body>
     <div class="OpenpacksContainer">
+        <div class="CoinContainer"> <%- include('_coins', {Coins: locals.Coins}) %> </div> 
         <div class = "ContainerBody">
             <div id = "CardsOutOfPacks" class = 'CardsOutOfPacks'>
                 <%- include("_cards.ejs", {height: "320px", width: "200px",Card: {Stats: []}}) %> 
             </div>
-            <img id = 'Pack' src="/pictures/Fifapack.png" onclick="Packanimation()" class="card"/>
+            <img id = 'Pack' src="/pictures/Fifapack.png" class="card"/>
+            <div class="Packprice">
+                <p>500</p>
+                <img src="/pictures/Fifacoins.png">
+            </div>
         </div>
         <%- include('_sidebar.ejs', {id: locals.id}) %>
     </div>
@@ -34,7 +40,7 @@
             return PlayerData
         }
 
-        Pack.addEventListener('click', ConnectToDatabase)
+        if('<%= locals.Coins %>' >= 500) Pack.addEventListener('click', ConnectToDatabase)
 
         async function ConnectToDatabase(){
             const PlayerID = await Math.floor(Math.random() * 20)
@@ -73,8 +79,11 @@
             Pack.removeEventListener('click',ConnectToDatabase)
         }
 
+        if('<%= locals.Coins %>' >= 500) Pack.addEventListener('click', Packanimation)
+
         function Packanimation() {
             const Card = document.querySelector('.card')
+            const Packprice = document.querySelector('.Packprice')
             const CardsOutOfPacks = document.querySelector('.CardsOutOfPacks')
             Card.classList.add('cardanimtaion')
             setTimeout(() => {

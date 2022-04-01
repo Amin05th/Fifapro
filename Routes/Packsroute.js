@@ -31,6 +31,9 @@ Packsroute.route('/:id/packs')
                     Phy:Phy,
                 }]
             }]
+        },
+        $inc : {
+            Coins: -500 
         }
     })
     res.json({Rating:Rating, Position:Position, PlayerName:PlayerName, 
@@ -38,9 +41,12 @@ Packsroute.route('/:id/packs')
 })
 .get(async(req, res) => {
     const param = req.params.id
+    const FifaUser = await fifapro.findById(param)
+    const Coins =  FifaUser?.Coins
     res.render('OpenPacks', {
         id: param,
         AUTHTOKEN: process.env.AUTHTOKEN,
+        Coins:Coins
     })
 })
 

@@ -23,7 +23,8 @@ const Fifaplayer = new Schema({
         Defenders: [],
         Midfield: [],
         Striker: [],
-    }]
+    }],
+    Coins: Number
 })
 
 module.exports = model('fifapro', Fifaplayer)

@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/Matchstyle.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="/style.css">
     <title>Document</title>
 </head>
 <body>
@@ -13,7 +15,7 @@
             <div class = 'Game-board'>
 
                 <div class="Teams">
-                    <% locals.SavedTeamForMatch.Team.map(Teams => { %>
+                    <% locals.SavedTeamForMatch?.Team.map(Teams => { %>
                         <p> <%= Teams.Goalkeeper[0].PlayerName %> </p>
                         <%Teams.Defenders.map(Defender => {%> <p><%= Defender.PlayerName %></p><%})%> 
                         <%Teams.Midfield.map(Midfield => {%> <p><%= Midfield.PlayerName %></p> <%})%> 
@@ -23,24 +25,66 @@
                 
                 <div class="GameInfos">
                     <div class = 'Score'>
-                        <h1>0</h1>
-                        <h1>0</h1>
+                        <h1 id="TeamScore">0</h1>
+                        <h1 id="OpponendScore">0</h1>
                     </div>
                     <div class="Time">
-                        <h1>00:00</h1>
+                        <span><h1 id="minutes">00</h1> <h1>:</h1> <h1 id="seconds">00</h1></span>
                     </div>
-                    <div class = 'SimulateButton' ><button>Simulate</button></div>
+                    <div class= 'SimulateButton'><button onclick="StartStopWatch()">Simulate</button></div>
                 </div>
                 
-                <div id = 'OpponendTeam' class="Teams">
-                    
-                </div>
+                <div id = 'OpponendTeam' class="Teams"></div>
             </div>
         </div>
         <%- include('_sidebar.ejs', {id: locals.id}) %> 
     </div>
 </body>
 <script>
+    let minute = 00
+    let second = 00
+    let Teamscorevariable = 0
+    let OpponendScorevariable = 0
+    let interval
+    const minutes = document.getElementById('minutes')
+    const seconds = document.getElementById('seconds')
+    const StartTimer = document.getElementById('StartTimer')
+    const Teams = document.querySelector('.Teams')
+    const TeamScore = document.getElementById('TeamScore')
+    const OpponendScore = document.getElementById('OpponendScore')
+
+    function StartStopWatch(){
+        if(Teams.children.length === 0 ) return
+        interval = setInterval(() => {
+            second++
+            if(second < 9) seconds.innerHTML = "0" + second
+            if(second > 9) seconds.innerHTML = second
+            if(second > 60) {
+                minute++
+                minutes.innerHTML = "0" + minute
+                second = 0
+                seconds.innerHTML = second
+            }
+            if(minute > 9) minutes.innerHTML = minute
+            if(minute == 90) {
+                clearInterval(interval)
+                if(TeamScore.textContent > OpponendScore.textContent) return axios.post('/<%=locals.id%>/match', {WonCoins: 100})
+            }
+            
+            // increase Score
+            const increaseScore = Math.ceil((Math.random() * 1000))
+            const increaseOpponendScore = Math.ceil((Math.random() * 1000))
+            if(increaseScore == 5){
+                Teamscorevariable++
+                TeamScore.innerHTML = Teamscorevariable
+            }
+            if(increaseOpponendScore == 5){
+                OpponendScorevariable++
+                OpponendScore.innerHTML = OpponendScorevariable
+            }
+        })
+    }
+
     const OpponendTeam = document.getElementById('OpponendTeam')
     const Goalkeeper = [
         {
@@ -215,8 +259,6 @@
                   RightWinger[Math.floor(Math.random() * 4)].name]
     
     OpponendTeam.innerHTML = Team.map(team => {return '<p>' + team + '</p>'}).join('')
-    const HAHA = new Date()
-    const SUII = HAHA.setTime(00)
-    console.log(SUII)
+
 </script>
 </html>
