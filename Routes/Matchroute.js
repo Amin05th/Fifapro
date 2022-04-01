@@ -1,6 +1,7 @@
 const express = require('express')
 const Matchroute = express.Router()
 const fifapro = require('../Mongoose/users')
+const UUID = require('uuid')
 
 Matchroute.get('/:id/match', async (req, res) => {
     const param = req.params.id
@@ -8,7 +9,8 @@ Matchroute.get('/:id/match', async (req, res) => {
     const id = req.params.id
     res.render('StartMatch', {
         id: id,
-        SavedTeamForMatch: SavedTeamForMatch
+        SavedTeamForMatch: SavedTeamForMatch,
+        uniqueId: UUID.v4()
     })
 })
 

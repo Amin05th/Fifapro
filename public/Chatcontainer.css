@@ -1,0 +1,29 @@
+.ChatContainer{
+    height: 100vh;
+}
+
+.chat {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 70%;
+}
+
+.chatbox {
+    background-color: #252958;
+    width: 50%;
+    height: 90%;
+}
+
+.footer {
+    display: flex;
+    height: 10%;
+    width: 50%;
+    background-color: #252958;
+}
+
+.footer > textarea {
+    margin-left: 3%;
+    width: 85%;
+    resize: none;
+}

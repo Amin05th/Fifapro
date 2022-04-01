@@ -1,6 +1,7 @@
 const express = require('express')
 const Packsroute = express.Router()
 const fifapro = require('../Mongoose/users')
+const UUID = require('uuid')
 
 Packsroute.route('/:id/packs')
 .post(async (req, res) => {
@@ -46,7 +47,8 @@ Packsroute.route('/:id/packs')
     res.render('OpenPacks', {
         id: param,
         AUTHTOKEN: process.env.AUTHTOKEN,
-        Coins:Coins
+        Coins:Coins,
+        uniqueId: UUID.v4()
     })
 })
 

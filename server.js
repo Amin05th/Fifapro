@@ -7,6 +7,7 @@ const Dashboardroute = require('./Routes/Dashboard')
 const Teammanagmentroute = require('./Routes/Teammanagment')
 const Packsroute = require('./Routes/Packsroute')
 const Matchroute = require('./Routes/Matchroute')
+const Chatroute = require('./Routes/Chatroute')
 const app = express()
 const PORT = 3000
 
@@ -31,5 +32,7 @@ app.use(Teammanagmentroute)
 app.use(Packsroute)
 
 app.use(Matchroute)
+
+app.use(Chatroute)
 
 app.listen(PORT)

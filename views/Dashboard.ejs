@@ -11,26 +11,7 @@
 <body>
     <div class="DashboardContainer">
         <div class="CoinContainer"><%- include('_coins.ejs', {Coins: locals.Coins}) %></div>
-        <div class = 'Content-table'>
-            <div class = 'StartPage'>
-                <div id="stricker" class = 'stricker'>
-                
-                </div>
-            
-                <div class = 'midfield'>
-
-                </div>
-            
-                <div class = 'defence'>
-
-                </div>
-            
-                <div class = 'goalkeeper'>
-
-                </div>
-            </div>
-        </div>
-        <%- include('_sidebar.ejs', {id: locals.id}) %>
+        <%- include('_sidebar.ejs', {id: locals.id, uniqueId: uniqueId}) %>
     </div>
 </body>
 </html>

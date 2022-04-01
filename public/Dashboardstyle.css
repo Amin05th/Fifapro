@@ -12,46 +12,5 @@ body{
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-}
-
-.Content-table {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.StartPage {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 50%;
-    height: 400px;
-    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvJoK9uKyIT-o2XlBRQl3-dXJxFF1YwiUgkaofmOKKOBRhRNbsSI5BtMyAHWrBZvm9U7k&usqp=CAU');
-    background-position-y: 100%;
-}
-
-.stricker {
-    display: flex;
-    justify-content:space-evenly;
-}
-
-.midfield {
-    display: flex;
-    justify-content:center;
-    gap: 12px;
-}
-
-.defence {
-    display: flex;
-    justify-content:space-around;
-}
-
-.goalkeeper {
-    display: flex;
-    justify-content:center;
-    align-items: center;
+    justify-content: end;
 }
